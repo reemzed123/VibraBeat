@@ -25,11 +25,16 @@ jobs:
         with:
           gradle-version: '8.9'
 
+      
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
 
+      - name: Accept Android licenses
+        run: yes | sdkmanager --licenses || true
+
       - name: Install Android SDK 35
-        run: sdkmanager "platforms;android-35" "build-tools;35.0.0"
+        run: |
+          sdkmanager --install "platforms;android-35" "build-tools;35.0.0"
 
       - name: Locate project
         run: |
